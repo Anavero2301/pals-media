@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spain New Build Deal Finder</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    body { font-family: Arial, sans-serif; margin: 2rem; background:#f8f9fb; color:#222; }
+    .wrap { max-width: 1100px; margin: 0 auto; }
+    .card { background:white; border-radius:12px; padding:1rem 1.25rem; margin-bottom:1rem; box-shadow:0 2px 10px rgba(0,0,0,.06); }
+    .grid { display:grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap: .75rem; }
+    label { display:block; font-size:.85rem; color:#555; margin-bottom:.25rem; }
+    input, select, button, textarea { width:100%; padding:.6rem; border:1px solid #d0d7de; border-radius:8px; font-size:.95rem; }
+    button { cursor:pointer; background:#0d6efd; color:white; border:none; }
+    button.secondary{background:#495057}
+    .actions { display:flex; gap:.75rem; }
+    .actions button { flex:1; }
+    table { width:100%; border-collapse: collapse; font-size:.92rem; }
+    th, td { border-bottom:1px solid #eee; text-align:left; padding:.55rem; vertical-align:top; }
+    th { background:#f3f5f7; }
+    .score { font-weight:700; }
+    .muted { color:#666; font-size:.86rem; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Valencia / Alicante / Almería Deal Finder</h1>
+    <p class="muted">Use this tool to aggregate listings, normalize prices, and rank the best new-build opportunities for a 2027 purchase.</p>
+
+    <div class="card">
+      <h2>1) Search Filters</h2>
+      <div class="grid">
+        <div><label>Min price (€)</label><input id="minPrice" type="number" value="250000" /></div>
+        <div><label>Max price (€)</label><input id="maxPrice" type="number" value="350000" /></div>
+        <div><label>Earliest year built</label><input id="minYear" type="number" value="2021" /></div>
+        <div><label>Target close year</label><input id="targetYear" type="number" value="2027" /></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>2) Scrape/Input listing data</h2>
+      <p class="muted">Paste JSON array from your scraper, browser extension, or manual exports. Required fields: title, region, price, buildStatus, year, m2, link.</p>
+      <textarea id="inputJson" rows="8">[
+  {
+    "title": "2-bed new build near beach",
+    "region": "Alicante",
+    "price": 315000,
+    "buildStatus": "newly built",
+    "year": 2025,
+    "m2": 91,
+    "distanceToSeaKm": 1.2,
+    "link": "https://example.com/listing-1"
+  },
+  {
+    "title": "Off-plan apartment in Valencia",
+    "region": "Valencia",
+    "price": 289000,
+    "buildStatus": "in development",
+    "year": 2027,
+    "m2": 84,
+    "distanceToSeaKm": 4.1,
+    "link": "https://example.com/listing-2"
+  }
+]</textarea>
+      <div class="actions" style="margin-top:.75rem;">
+        <button id="analyzeBtn">Analyze deals</button>
+        <button id="downloadBtn" class="secondary">Download ranked CSV</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>3) Ranked results</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Score</th><th>Title</th><th>Region</th><th>Price</th><th>€/m²</th><th>Status</th><th>Year</th><th>Sea km</th><th>Link</th>
+          </tr>
+        </thead>
+        <tbody id="resultsBody"></tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>Starter scraper blueprint (Node.js)</h2>
+      <p class="muted">Use this as a starting point for legal, ToS-compliant scraping or API ingestion.</p>
+      <pre><code>npm i axios cheerio
+node scraper-blueprint.js</code></pre>
+    </div>
+  </div>
+
+  <script src="js/deals-tool.js"></script>
+</body>
+</html>
