@@ -685,3 +685,69 @@ p {
     padding: 28px;
   }
 }
+/* ========================================
+   TESTIMONIALS
+   ======================================== */
+
+.testimonials__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+  margin-top: 40px;
+}
+
+.testimonial-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 32px;
+  margin: 0;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.testimonial-card__quote {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #222;
+  margin: 0;
+  font-style: italic;
+  flex-grow: 1;
+}
+
+.testimonial-card__author {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: auto;
+}
+
+.testimonial-card__avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #111;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+  flex-shrink: 0;
+}
+
+.testimonial-card__name {
+  margin: 0;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #111;
+}
+
+.testimonial-card__role {
+  margin: 2px 0 0;
+  font-size: 0.85rem;
+  color: #666;
+}
+
